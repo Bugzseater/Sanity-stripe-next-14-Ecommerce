@@ -2,7 +2,7 @@
 import Header from '@/components/Header';
 import { MAIN_ROUTE, REGISTER_ROUTE } from '@/constants/routes';
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { FaUserAlt, FaLock } from 'react-icons/fa';
 import { MdEmail } from "react-icons/md";
 import { auth } from '@/services/firebase';
@@ -12,60 +12,62 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = async(e) =>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      window.location.href=(MAIN_ROUTE);
-      console.log("loging succesfull");
+      window.location.href = MAIN_ROUTE;
+      console.log("Login successful");
     } catch (error) {
-      
+      setError(error.message);
+      console.error("Error logging in", error);
     }
   }
-  
+
   return (
     <div>
-      <Header/>
+      <Header />
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-8 bg-red-400 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center text-white">Login</h2>
-        <form  onSubmit={handleSubmit} className="space-y-6">
-          <div className="flex items-center p-2 bg-gray-200 rounded-lg">
-            <MdEmail className="mr-2 text-gray-500" />
-            <input 
-              type="email" 
-              placeholder="Email" 
-              className="w-full bg-transparent outline-none" 
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="flex items-center p-2 bg-gray-200 rounded-lg">
-            <FaLock className="mr-2 text-gray-500" />
-            <input 
-              type="password" 
-              placeholder="Password" 
-              className="w-full bg-transparent outline-none" 
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button 
-            type="submit" 
-            className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-700"
-          >
-            Login
-          </button>
-          <div className=' text-white'>
-            <span>Don't Register ?  
-              <Link href={REGISTER_ROUTE}><span>  Register Here</span></Link>
-            </span>
-          </div>
-        </form>
+        <div className="w-full max-w-md p-8 space-y-8 bg-red-400 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold text-center text-white">Login</h2>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="flex items-center p-2 bg-gray-200 rounded-lg">
+              <MdEmail className="mr-2 text-gray-500" />
+              <input 
+                type="email" 
+                placeholder="Email" 
+                className="w-full bg-transparent outline-none" 
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="flex items-center p-2 bg-gray-200 rounded-lg">
+              <FaLock className="mr-2 text-gray-500" />
+              <input 
+                type="password" 
+                placeholder="Password" 
+                className="w-full bg-transparent outline-none" 
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            {error && <p className="text-red-500">{error}</p>}
+            <button 
+              type="submit" 
+              className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-700"
+            >
+              Login
+            </button>
+            <div className="text-white">
+              <span>Don't Register?  
+                <Link href={REGISTER_ROUTE}><span> Register Here</span></Link>
+              </span>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
 
-
-export default Login
+export default Login;
