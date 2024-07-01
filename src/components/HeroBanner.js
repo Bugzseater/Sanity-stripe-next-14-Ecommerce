@@ -1,5 +1,5 @@
+
 import React from 'react';
-import '../app/globals.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import { urlFor } from '../../lib/client';
@@ -10,20 +10,17 @@ const HeroBanner = ({ heroBanner }) => {
       <div>
         <p className='beats-solo'>{heroBanner.smallText}</p>
         <h3>{heroBanner.midText}</h3>
+        <h1>{heroBanner.largeText1}</h1>
         
-          <Image
-            src=''
-            alt='headphone'
-            className='hero-banner-image'
-          />
+        <img src={urlFor(heroBanner.image).url()} alt='headphone' className='hero-banner-image'></img>
 
         <div>
-          <Link href={`/product/${heroBanner.productId}`}>
-            <button type='button'>BUTTON TEXT</button>
+          <Link href={`/product/${heroBanner.product}`}>
+            <button type='button'>{heroBanner.buttonText}</button>
           </Link>
           <div className='desc'>
             <h5>Description</h5>
-            <p>{heroBanner.description}</p>
+            <p>{heroBanner.desc}</p>
           </div>
         </div>
       </div>
