@@ -15,6 +15,9 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+*{
+  font-family: "poppins";
+}
 
 body{
   padding: 10px;
@@ -440,18 +443,25 @@ padding: 30px 65px;
   transform: scale(1.1,1.1);
 }
 .product-detail-container{
-  display: flex;
+display: flex;
  gap: 40px;
  margin: 40px;
  margin-top: 60px;
  color: #324d67;
+ flex-direction: column;
 
+}
+
+.hi{
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-detail-image{
   border-radius: 15px;
    background-color: #ebebeb;
-
   width: 400px;
   height: 400px;
   cursor: pointer;
@@ -481,10 +491,13 @@ padding: 30px 65px;
   color: #f02d34;
   margin-top: 10px;
   display: flex;
+  flex-direction: row;
   gap: 5px;
   align-items: center;
 }
-
+.reviews .star{
+  display: flex;
+}
 .product-detail-desc h4{
   margin-top: 10px;
 }
@@ -549,6 +562,9 @@ padding: 30px 65px;
   transform:scale(1.1,1.1)
 }
 .quantity-desc{
+  display: flex;
+  
+  align-items: center;
   border: 1px solid gray;
 padding: 6px;
 }
@@ -784,5 +800,12 @@ margin-top: 160px;
 .btn-container{
   width: 300px;
   margin: auto;
+}
+.hi{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
 }
